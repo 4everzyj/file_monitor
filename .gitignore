@@ -1,0 +1,13 @@
+/build/
+/dist/
+
+/.idea/
+**/__pycache__/
+
+*.spec
+*.exe
+*.log
+
+/resource/**
+
+!/resource/.gitkeep
