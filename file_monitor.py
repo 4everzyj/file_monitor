@@ -8,7 +8,7 @@ import yaml
 import logging
 
 
-VERSION = '1.0'
+VERSION = '1.1'
 LOG_PATH = './file_monitor.log'
 
 if os.path.isfile(LOG_PATH):
@@ -26,6 +26,7 @@ with open('./config.json', 'r', encoding='utf-8') as f:
 
 # file_path = data['file_path']
 file_dir = data['file_dir']
+ignore_heads = data['ignore_heads']
 ts_sleep = data['ts_sleep']
 
 
@@ -39,6 +40,13 @@ def monitor_files(file_dir):
     while True:
         file_list = os.listdir(file_dir)
         for filename in file_list:
+            ignore = False
+            for ignore_head in ignore_heads:
+                if filename.startswith(ignore_head):
+                    ignore = True
+                    break
+            if ignore:
+                continue
             file_path = os.path.join(file_dir, filename)
             if os.path.isdir(file_path):
                 continue

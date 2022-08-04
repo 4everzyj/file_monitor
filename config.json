@@ -1,4 +1,8 @@
 {
   "file_dir": "./resource/",
-  "ts_sleep": 1
+  "ignore_heads": [
+    "$",
+    "~"
+  ],
+  "ts_sleep": 30
 }
